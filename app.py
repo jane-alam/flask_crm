@@ -18,9 +18,17 @@ class ClientsForm(Form):
     cl_name = StringField("Client Name")
 
 
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def HomePage():
-    return render_template("clients.html")
+    form = ClientsForm()
+    if form.validate_on_submit():
+        new_cl = ClientsDB(
+            cl_name=form.cl_name.data
+        )
+        db.session.add(new_cl)
+        db.session.commit()
+        return "New Client added successfully"
+    return render_template("clients.html", form=form)
 
 
 if __name__ == "__main__":
