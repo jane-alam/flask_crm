@@ -1,0 +1,5 @@
+<form action="{{ url_for('HomePage') }}" method="POST">
+    {{ form.csrf_token }}
+    {{ form.cl_name() }}
+    <button type="submit">ADD CLIENT</button>
+</form>

@@ -8,9 +8,19 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 
 
+class ClientsDB(db.Model):
+    __tablename__ = 'clients'
+    id = db.Column(db.INTEGER, primary_key=True)
+    cl_name = db.Column(db.String(200))
+
+
+class ClientsForm(Form):
+    cl_name = StringField("Client Name")
+
+
 @app.route("/")
 def HomePage():
-    return "HomePage"
+    return render_template("clients.html")
 
 
 if __name__ == "__main__":
