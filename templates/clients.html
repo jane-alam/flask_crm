@@ -5,7 +5,14 @@
 </form>
 
 <ul>
-{% for client in cl_list %}
-<li>{{ client.cl_name }}</li>
-{% endfor %}
+    {% for client in cl_list %}
+        <li>
+            {{ client.cl_name }}
+        <ul>
+            {% for pr in client.projectss.all() %}
+            <li>{{ pr.pr_name }}</li>
+                {% endfor %}
+        </ul>
+        </li>
+    {% endfor %}
 </ul>

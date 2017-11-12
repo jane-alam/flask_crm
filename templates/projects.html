@@ -1,0 +1,11 @@
+<form action="{{ url_for('ProjectsDef') }}" method="POST">
+    {{ form.csrf_token }}
+    {{ form.pr_name() }}
+    {{ form.client_id }}
+    <button type="submit">ADD Project</button>
+</form>
+<ul>
+    {% for project in pr_list %}
+        <li>{{ project.pr_name }} -- {{ project.client_id }}</li>
+    {% endfor %}
+</ul>

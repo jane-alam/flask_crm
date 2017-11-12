@@ -9,3 +9,4 @@ mysqlclient==1.3.12
 SQLAlchemy==1.1.15
 Werkzeug==0.12.2
 WTForms==2.1
+WTForms-SQLAlchemy==0.1
