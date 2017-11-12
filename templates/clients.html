@@ -3,3 +3,9 @@
     {{ form.cl_name() }}
     <button type="submit">ADD CLIENT</button>
 </form>
+
+<ul>
+{% for client in cl_list %}
+<li>{{ client.cl_name }}</li>
+{% endfor %}
+</ul>
