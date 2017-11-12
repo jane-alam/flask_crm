@@ -12,6 +12,14 @@ class ClientsDB(db.Model):
     __tablename__ = 'clients'
     id = db.Column(db.INTEGER, primary_key=True)
     cl_name = db.Column(db.String(200))
+    projectss = db.relationship("ProjectsDB", backref="client", lazy="dynamic")
+
+
+class ProjectsDB(db.Model):
+    __tablename__ = 'projects'
+    id = db.Column(db.INTEGER, primary_key=True)
+    pr_name = db.Column(db.String(200))
+    client_id = db.Column(db.INTEGER, db.ForeignKey('clients.id'))
 
 
 class ClientsForm(Form):
@@ -28,7 +36,8 @@ def HomePage():
         db.session.add(new_cl)
         db.session.commit()
         return "New Client added successfully"
-    return render_template("clients.html", form=form)
+    cl_list = ClientsDB.query.all()
+    return render_template("clients.html", form=form, cl_list=cl_list)
 
 
 if __name__ == "__main__":
