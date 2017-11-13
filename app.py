@@ -39,8 +39,8 @@ class ProjectsForm(Form):
     client_id = QuerySelectField(query_factory=ChoiceQuery, allow_blank=True, get_label='cl_name')
 
 
-@app.route("/", methods=["POST", "GET"])
-def HomePage():
+@app.route("/clients", methods=["POST", "GET"])
+def ClientsDef():
     # Add Client Form
     form = ClientsForm()
     if form.validate_on_submit():
@@ -72,6 +72,14 @@ def ProjectsDef():
     # Show all Projects
     pr_list = ProjectsDB.query.all()
     return render_template("projects.html", form=form, pr_list=pr_list)
+
+
+@app.route("/")
+def HomePage():
+    cl_list = ClientsDB.query.all()
+    pr_list = ProjectsDB.query.all()
+    return render_template("homepage.html", cl_list=cl_list, pr_list=pr_list)
+
 
 if __name__ == "__main__":
     app.run()

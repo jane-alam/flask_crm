@@ -1,9 +1,3 @@
-<form action="{{ url_for('ClientsDef') }}" method="POST">
-    {{ form.csrf_token }}
-    {{ form.cl_name() }}
-    <button type="submit">ADD CLIENT</button>
-</form>
-
 <ul>
     {% for client in cl_list %}
         <li>
@@ -15,5 +9,11 @@
                 {% endfor %}
             </ul>
         </li>
+    {% endfor %}
+</ul>
+
+<ul>
+    {% for project in pr_list %}
+        <li>{{ project.pr_name }} -- {{ project.client_id }}</li>
     {% endfor %}
 </ul>
